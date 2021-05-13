@@ -21,7 +21,10 @@ interface MyArray<T> {
 
   map<U>(fn: (el: T) => U): U[];
 
-  reduce<U>(fn: (acc: U, cur: T, index: number) => U): U[];
+  reduce<U>(fn: (acc: U, cur: T, index: number) => U, initialValue: U): U[];
+
 }
 
-const tsArr: Array<number> = [1, 3];
+const tsArr: MyArray<number> = [1, 2, 3];
+
+tsArr.map((el) => el + 1);
