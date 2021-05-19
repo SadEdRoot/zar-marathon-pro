@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, size = 'normal', ful
         s.root,
         fullscreen ? s.fullscreen : null,
         color === 'green' ? s["root--green"] : null,
-        color === 'yellow' ? s["root--yallow"] : null,
+        color === 'yellow' ? s["root--yellow"] : null,
         size === ButtonSize.normal ? s["root--normal"] : null,
         size === ButtonSize.small ? s["root--small"] : null,
       )}

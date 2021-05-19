@@ -1,0 +1,16 @@
+.root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.text {
+  width: 100%;
+  font-size: 35px;
+  line-height: 41px;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.grid {
+  display: flex;
+}
