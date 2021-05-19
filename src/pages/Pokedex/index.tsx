@@ -20,12 +20,13 @@ const Pokedex: React.FC<PokedexProps> = ({title}) => {
       </div>
       <div className={s.grid}>
         {
-          pokemons.map(({name, img}) => (
+          pokemons.map(({name, img, stats,types}) => (
             <PokemonCard
               name={name}
               img={img}
-            >
-            </PokemonCard>
+              stats={stats}
+              types={types}
+            />
           ))
         }
       </div>

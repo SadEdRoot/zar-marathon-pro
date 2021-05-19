@@ -1,6 +1,7 @@
+@import "../../variables";
+
 .root {
   min-height: 100vh;
-  background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
 
 .text {
@@ -12,5 +13,11 @@
 }
 
 .grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 34px;
+  width: 100%;
+  max-width: 1125px;
+  margin-right: auto;
+  margin-left: auto;
 }
