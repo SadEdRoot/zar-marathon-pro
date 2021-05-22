@@ -1,7 +1,5 @@
 import React from 'react';
 import Header from "../../components/Header";
-import {A} from "hookrouter";
-import cn from "classnames";
 import s from './Pokedex.module.scss'
 
 import pokemons from "./CardsData";
@@ -20,8 +18,9 @@ const Pokedex: React.FC<PokedexProps> = ({title}) => {
       </div>
       <div className={s.grid}>
         {
-          pokemons.map(({name, img, stats,types}) => (
+          pokemons.map(({name, img, stats,types, id}) => (
             <PokemonCard
+              key={id}
               name={name}
               img={img}
               stats={stats}

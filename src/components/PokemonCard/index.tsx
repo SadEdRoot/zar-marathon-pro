@@ -3,6 +3,7 @@ import Heading from "../Heading";
 
 import s from './PokemonCard.module.scss';
 
+
 interface PokeminCardProps {
   name: string
   img: string
@@ -37,7 +38,7 @@ const PokemonCard: React.FC<PokeminCardProps> = ({name, img, stats,types}) => {
         <div className={s.labelWrap}>
           {
             types.map((item) => (
-                <span className={s.label}>{item}</span>
+                <span key={item} className={s.label}>{item}</span>
               ))
           }
         </div>
