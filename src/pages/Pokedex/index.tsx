@@ -12,7 +12,6 @@ interface PokedexProps {
 const Pokedex: React.FC<PokedexProps> = ({title}) => {
   return (
     <div className={s.root}>
-      <Header />
       <div className={s.text}>
         800 Pokemons for you to choose your favorite
       </div>

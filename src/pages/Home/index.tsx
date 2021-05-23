@@ -12,7 +12,6 @@ import {LinkEnum} from "../../routes";
 const HomePage = () => {
   return (
     <div className={s.root}>
-      <Header />
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
           <Heading size={1}>
