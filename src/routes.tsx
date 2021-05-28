@@ -41,7 +41,7 @@ export const GENERAL_MENU: IGeneralMenu[] = [
   }
 ]
 
-const SECOND_ROUTES: IGeneralMenu[] = [{
+export const SECOND_ROUTES: IGeneralMenu[] = [{
   title: 'Pokemon',
   link: LinkEnum.POKEMON,
   component: ({id}: PokemonProps)=> <Pokemon id={id} />,

@@ -1,5 +1,6 @@
 import React from 'react';
 import Heading from "../Heading";
+import {A} from 'hookrouter';
 
 import s from './PokemonCard.module.scss';
 import {PokemonsInt} from "../../interface/pokemon";
@@ -9,9 +10,10 @@ interface PokeminCardProps {
   data: PokemonsInt
 }
 
+
 const PokemonCard: React.FC<PokeminCardProps> = ({data}) => {
   return (
-    <div className={s.root}>
+    <A href={`/pokedex/${data.id}`} className={s.root}>
       <div className={s.infoWrap}>
         <Heading size={4} className={s.titleName}>
           {data.name}
@@ -41,7 +43,7 @@ const PokemonCard: React.FC<PokeminCardProps> = ({data}) => {
       <div className={s.pictureWrap}>
         <img src={data.img} alt={data.name as keyof JSX.ElementAttributesProperty} />
       </div>
-    </div>
+    </A>
   );
 };
 
