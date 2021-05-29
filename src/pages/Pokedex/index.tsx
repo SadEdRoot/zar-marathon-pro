@@ -1,31 +1,53 @@
-import React from 'react';
-import Header from "../../components/Header";
-import {A} from "hookrouter";
-import cn from "classnames";
+import React, {useState} from 'react';
 import s from './Pokedex.module.scss'
 
-import pokemons from "./CardsData";
 import PokemonCard from "../../components/PokemonCard";
+import useData from "../../hook/getData";
+import {IPokemon} from "../../interface/pokemon";
+import useDebounce from "../../hook/useDebounce";
 
-interface PokedexProps {
-  title?: string
-
+interface IQuery {
+  name?: string
 }
-const Pokedex: React.FC<PokedexProps> = ({title}) => {
+
+const Pokedex: React.FC = () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState<IQuery>({});
+
+  const debouncedValue = useDebounce(searchValue, 1000)
+
+  const {
+    data,
+    isLoading,
+    isError
+  } = useData<IPokemon>('getPokemons', query, [debouncedValue]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    setQuery((state:IQuery) => ({
+      ...state,
+      name: e.target.value,
+    }))
+  }
+
+  if (isError) {
+    return <div>Something happened...</div>
+  }
+
   return (
     <div className={s.root}>
-      <Header />
       <div className={s.text}>
-        800 Pokemons for you to choose your favorite
+        {!isLoading && data && data.total} Pokemons for you to choose your favorite
+      </div>
+      <div>
+        <input className={s.search} type="text" value={searchValue} onChange={handleSearchChange} placeholder="Encuentra tu pokémon..."/>
       </div>
       <div className={s.grid}>
         {
-          pokemons.map(({name, img, stats,types}) => (
+          !isLoading && data && data.pokemons.map((pokemonData) => (
             <PokemonCard
-              name={name}
-              img={img}
-              stats={stats}
-              types={types}
+              key={pokemonData.id}
+              data={pokemonData}
             />
           ))
         }

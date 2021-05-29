@@ -1,51 +1,49 @@
 import React from 'react';
 import Heading from "../Heading";
+import {A} from 'hookrouter';
 
 import s from './PokemonCard.module.scss';
+import {PokemonsInt} from "../../interface/pokemon";
+
 
 interface PokeminCardProps {
-  name: string
-  img: string
-  stats: {
-    attack: number
-    defense: number
-  }
-  types: string[]
+  data: PokemonsInt
 }
 
-const PokemonCard: React.FC<PokeminCardProps> = ({name, img, stats,types}) => {
+
+const PokemonCard: React.FC<PokeminCardProps> = ({data}) => {
   return (
-    <div className={s.root}>
+    <A href={`/pokedex/${data.id}`} className={s.root}>
       <div className={s.infoWrap}>
         <Heading size={4} className={s.titleName}>
-          {name}
+          {data.name}
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>
             <div className={s.statValue}>
-              {stats.attack}
+              {data.stats.attack}
             </div>
             Attack
           </div>
           <div className={s.statItem}>
             <div className={s.statValue}>
-              {stats.defense}
+              {data.stats.defense}
             </div>
             Defense
           </div>
         </div>
         <div className={s.labelWrap}>
           {
-            types.map((item) => (
-                <span className={s.label}>{item}</span>
+            data.types.map((item) => (
+                <span key={item} className={s.label}>{item}</span>
               ))
           }
         </div>
       </div>
       <div className={s.pictureWrap}>
-        <img src={img} alt={name as keyof JSX.ElementAttributesProperty} />
+        <img src={data.img} alt={data.name as keyof JSX.ElementAttributesProperty} />
       </div>
-    </div>
+    </A>
   );
 };
 
