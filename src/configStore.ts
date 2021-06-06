@@ -5,7 +5,7 @@ import createRootReducer from './store';
 const enhancers: [] = [];
 
 if (process.env.NODE_ENV === 'development') {
-  const devToolsExtension = (window && (window as any).__REDAX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+  const devToolsExtension = (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
   if (typeof devToolsExtension === 'function') {
     // @ts-ignore
@@ -14,7 +14,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 function configureStore(preloadedState = {}) {
+
   const store = createStore(
+    // @ts-ignore
     createRootReducer(),
     preloadedState,
     compose(

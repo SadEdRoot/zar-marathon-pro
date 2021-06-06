@@ -27,3 +27,5 @@ export interface PokemonsInt {
   'order': number
   'weight': number
 }
+
+export type ITypeRequest = string[];
