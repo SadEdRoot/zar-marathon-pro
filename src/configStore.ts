@@ -13,10 +13,9 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
-function configureStore(preloadedState = {}) {
+function configStore(preloadedState = {}) {
 
   const store = createStore(
-    // @ts-ignore
     createRootReducer(),
     preloadedState,
     compose(
@@ -28,4 +27,4 @@ function configureStore(preloadedState = {}) {
   return store;
 }
 
-export default configureStore()
+export default configStore

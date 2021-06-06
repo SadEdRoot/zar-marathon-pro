@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import s from './Pokedex.module.scss';
 
 import PokemonCard from "../../components/PokemonCard";
 import useData from "../../hook/getData";
 import {IPokemon} from "../../interface/pokemon";
 import useDebounce from "../../hook/useDebounce";
-import {getTypesAction} from "../../store/pokemon";
+import {getPokemonsTypes, getTypesAction} from "../../store/pokemon";
 
 
 interface IQuery {
@@ -15,6 +15,8 @@ interface IQuery {
 
 const Pokedex: React.FC = () => {
   const dispatch = useDispatch();
+  const types = useSelector(getPokemonsTypes);
+  console.log("#### types:", types);
   const [searchValue, setSearchValue] = useState('');
   const [query, setQuery] = useState<IQuery>({});
 

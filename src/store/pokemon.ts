@@ -1,6 +1,8 @@
 import {Dispatch} from "redux";
 import req from "../utils/request";
 import {ITypeRequest} from "../interface/pokemon";
+import {IStateRequest} from "../interface";
+import {IInitialState} from "./index";
 
 export enum PokemonActionTypes {
   FETCH_TYPES = 'FETCH_TYPES',
@@ -13,9 +15,13 @@ interface TypesAction {
   payload?: string[]
 }
 
+export interface IPokemonsInitialState {
+  types: IStateRequest<string>
+}
+
 type ActionsT = TypesAction;
 
-const initialState = {
+const initialState: IPokemonsInitialState = {
   types: {
     isLoading: false,
     data: null,
@@ -56,6 +62,8 @@ const pokemons = (state = initialState, action: ActionsT) => {
         return state
   }
 };
+
+export const getPokemonsTypes = (state: IInitialState) => state.pokemons.types.data;
 
 export const getTypesAction = () => {
   return async (dispatch: Dispatch<ActionsT>,) => {
