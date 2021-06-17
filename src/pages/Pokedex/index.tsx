@@ -1,16 +1,22 @@
-import React, {useState} from 'react';
-import s from './Pokedex.module.scss'
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import s from './Pokedex.module.scss';
 
 import PokemonCard from "../../components/PokemonCard";
 import useData from "../../hook/getData";
 import {IPokemon} from "../../interface/pokemon";
 import useDebounce from "../../hook/useDebounce";
+import {getPokemonsTypes, getTypesAction} from "../../store/pokemon";
+
 
 interface IQuery {
   name?: string
 }
 
 const Pokedex: React.FC = () => {
+  const dispatch = useDispatch();
+  const types = useSelector(getPokemonsTypes);
+  console.log("#### types:", types);
   const [searchValue, setSearchValue] = useState('');
   const [query, setQuery] = useState<IQuery>({});
 
@@ -21,6 +27,10 @@ const Pokedex: React.FC = () => {
     isLoading,
     isError
   } = useData<IPokemon>('getPokemons', query, [debouncedValue]);
+
+  useEffect(() => {
+    dispatch(getTypesAction())
+  }, [])
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
